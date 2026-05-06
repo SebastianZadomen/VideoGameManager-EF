@@ -1,0 +1,33 @@
+﻿@page
+@model VideoGameManager.Pages.Files.IndexModel
+@{
+    ViewData["Title"] = "File Page";
+}
+<h1 class="text-center">Files</h1>
+<div class="container mt-4">
+  
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="game-tab" data-bs-toggle="tab" data-bs-target="#game-info" type="button" role="tab">Activity Log</button>
+        </li>
+    </ul>
+    <div class="tab-content border-start border-end border-bottom p-4" id="myTabContent">
+        <div class="tab-pane fade show active" id="game-info" role="tabpanel">
+            @foreach (string linea in System.IO.File.ReadLines(Model.GameService.Path))
+            {
+               <p>@linea</p>
+            }
+        </div>
+    </div>
+    <form method="post" asp-page-handler="DownloadFile">
+        <div class="input-group">
+            <select asp-for="Type" class="form-select">
+                <option value="Txt">Txt</option>
+                <option value="Json">JSON</option>
+                <option value="Csv">CSV</option>
+                <option value="Xml">Xml</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Download</button>
+        </div>
+    </form>
+</div>

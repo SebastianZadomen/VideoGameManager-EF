@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GamesRanking>
+  <Game>
+    <Id>2</Id>
+    <Title>Apex</Title>
+    <Genre>Battle Royale</Genre>
+    <Year>2007</Year>
+    <Score>6.6</Score>
+    <Description>Mecanicas de movilidad mas dinamicas</Description>
+  </Game>
+  <Game>
+    <Id>1</Id>
+    <Title>Lol</Title>
+    <Genre>Moba</Genre>
+    <Year>2002</Year>
+    <Score>4.3</Score>
+    <Description>Juego moba 5vs5</Description>
+  </Game>
+</GamesRanking>

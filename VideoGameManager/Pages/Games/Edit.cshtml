@@ -1,0 +1,41 @@
+﻿@page "{id:int}"
+@model VideoGameManager.Pages.Games.EditModel
+@{
+}
+<h1 class="text-center">Edit Game</h1>
+<form method ="post">
+    <input type="hidden" asp-for="GameEdit.Id"/>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="GameEdit.Title">Title</label>
+            <input type="text" asp-for="GameEdit.Title"  class="form-control" placeholder="Title">
+            <span asp-validation-for="GameEdit.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="GameEdit.Year">Date</label>
+            <input type="number" asp-for="GameEdit.Year" class="form-control" placeholder="Date">
+            <span asp-validation-for="GameEdit.Year" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="GameEdit.Genre">Genre</label>
+        <input type="text" asp-for="GameEdit.Genre"  class="form-control" placeholder="Genre">
+        <span asp-validation-for="GameEdit.Genre" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="GameEdit.Score">Score</label>
+        <input type="number"  class="form-control" asp-for="GameEdit.Score" placeholder="Score">
+        <span asp-validation-for="GameEdit.Score" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GameEdit.Description">Description</label>
+        <input type="text" class="form-control" asp-for="GameEdit.Description" placeholder="Description">
+        <span asp-validation-for="GameEdit.Description" class="text-danger"></span>
+    </div>
+    <br></br>
+    <button type="submit"  class="btn btn-primary">Save Changes</button>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
