@@ -1,4 +1,7 @@
-﻿namespace VideoGameManager.wwwroot.Data
+﻿using Microsoft.EntityFrameworkCore;
+using VideoGameManager.Models;
+
+namespace VideoGameManager.Data
 {
     public class GameStoreContext : DbContext
     {
