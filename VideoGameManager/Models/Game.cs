@@ -26,5 +26,7 @@ namespace VideoGameManager.Models
 
         public Developer? Developer { get; set; }
 
+        public string? Platform { get; set; }
+
     }
 }
