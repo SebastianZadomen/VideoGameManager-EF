@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VideoGameManager.Data;
 using VideoGameManager.Models;
 using VideoGameManager.Service;
 
@@ -7,18 +8,18 @@ namespace VideoGameManager.Pages.Games
 {
     public class CreateModel : PageModel
     {
-        private readonly GameService GameService;
-
+        private readonly GameStoreContext _context;
         [BindProperty]
         public Game GameCreated { get; set; } = new Game();
+        public List<Developer> DeveloperList { get; set; } = new ();
 
-        public CreateModel(GameService gameService)
+        public CreateModel(GameStoreContext context)
         {
-            GameService = gameService;
+            _context = context;
         }
         public void OnGet()
         {
-
+            DeveloperList = _context.GetAllDeveloper();
         }
         public IActionResult OnPost()
         {
@@ -26,8 +27,8 @@ namespace VideoGameManager.Pages.Games
             {
                 return Page();
             }
-            GameCreated.Id = GameService.LastIdGame();
-            GameService.Add(GameCreated);
+            
+            _context.Add(GameCreated);
             return RedirectToPage("/Games/Index");
         }
     }

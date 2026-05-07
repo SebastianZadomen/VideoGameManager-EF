@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using VideoGameManager.Data;
 using VideoGameManager.Models;
 using VideoGameManager.Service;
 
@@ -7,18 +9,20 @@ namespace VideoGameManager.Pages.Games
 {
     public class EditModel : PageModel
     {
-        private readonly GameService GameService;
+        private readonly GameStoreContext _context;
         [BindProperty]
         public Game GameEdit { get; set; }
 
-        public EditModel(GameService gameService)
+        public List<Developer> DeveloperList { get; set; }
+
+        public EditModel(GameStoreContext context)
         {
-            GameService = gameService;
+            _context = context;
         }
 
         public void OnGet(int id)
         {
-            GameEdit = GameService.GetById(id);
+            GameEdit = _context.GetById(id);
 
         }
         public IActionResult OnPost()
@@ -28,7 +32,7 @@ namespace VideoGameManager.Pages.Games
                 return Page();
             }
 
-            GameService.Update(GameEdit);
+            _context.Update(GameEdit);
             return RedirectToPage("/Games/Index");
         }
     }

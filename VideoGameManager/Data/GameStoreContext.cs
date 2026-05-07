@@ -11,7 +11,10 @@ namespace VideoGameManager.Data
         public GameStoreContext(DbContextOptions<GameStoreContext> options)
             : base(options) { }
 
-
+        public List<Developer> GetAllDeveloper()
+        {
+            return Developers.ToList();
+        }
         public List<Game> GetAll()
         {
             return Games.Include(g => g.Developer).ToList();
