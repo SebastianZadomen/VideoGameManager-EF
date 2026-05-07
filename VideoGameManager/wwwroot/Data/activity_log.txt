@@ -4,3 +4,9 @@ Game Tittle : Lol
 [Date : 03/05/2026 1:33:23]
 [Add]
 Game Tittle : Apex
+[Date : 07/05/2026 19:45:57]
+[Delete]
+Game Tittle : Lol
+[Date : 07/05/2026 19:46:02]
+[Delete]
+Game Tittle : Apex

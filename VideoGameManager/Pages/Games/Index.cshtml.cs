@@ -1,5 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
+ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using VideoGameManager.Data;
 using VideoGameManager.Models;
 using VideoGameManager.Service;
 
@@ -7,17 +9,18 @@ namespace VideoGameManager.Pages.Games
 {
     public class IndexModel : PageModel
     {
-        private readonly GameService GameService;
+        private readonly GameStoreContext _context;
 
         public List<Game> Games { get; set; } = new();
 
-        public IndexModel(GameService gameService)
+        public IndexModel(GameStoreContext context )
         {
-            GameService = gameService;
+            _context = context;
         }
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Games = GameService.GetAll();
+
+          
 
         }
 
