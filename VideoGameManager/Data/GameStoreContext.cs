@@ -13,7 +13,7 @@ namespace VideoGameManager.Data
 
         public List<Developer> GetAllDeveloper()
         {
-            return Developers.ToList();
+            return Developers.Include(d => d.Games).ToList();
         }
         public List<Game> GetAll()
         {
@@ -43,6 +43,7 @@ namespace VideoGameManager.Data
             }
             
         }
+ 
     }
 
 }

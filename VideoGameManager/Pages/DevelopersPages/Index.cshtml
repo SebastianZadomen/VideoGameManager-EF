@@ -1,0 +1,38 @@
+﻿@page
+@model VideoGameManager.Pages.DevelopersPages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="text-center">
+    <h1 class="col-xxl text-center">List of Developers</h1>
+
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Year of foundation</th>
+                <th>Associated Game</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dev in Model.Developers)
+            {
+                <tr>
+                    <td>@dev.Id</td>
+                    <td>@dev.Name</td>
+                    <td>@dev.Country</td>
+                    <td>@dev.FoundedYear</td>
+                    <td>@(dev.Games != null && dev.Games.Any()? string.Join(", ", dev.Games.Select(x => x.Title)): "No games")</td>                   
+                    <td><a class="btn btn-info" asp-page="./Details" asp-route-id="@dev.Id">Detalles</a></td>
+                    <td><a class="btn btn-light" asp-page="./Edit" asp-route-id="@dev.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-page="./Delete" asp-route-id="@dev.Id">Eliminar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
