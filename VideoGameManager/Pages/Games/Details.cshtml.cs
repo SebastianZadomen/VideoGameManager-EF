@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VideoGameManager.Data;
 using VideoGameManager.Models;
 using VideoGameManager.Service;
 
@@ -7,16 +8,16 @@ namespace VideoGameManager.Pages.Games
 {
     public class DetailsModel : PageModel
     {
-        private readonly GameService GameService;
+        private readonly GameStoreContext _context;
         public Game GameSelected { get; set; }
-        public DetailsModel(GameService gameService)
+        public DetailsModel(GameStoreContext context)
         {
-            GameService = gameService;
+            _context = context;
         }
 
         public void OnGet(int id)
         {
-            GameSelected = GameService.GetById(id);
+            GameSelected = _context.GetById(id);
         }
         
     }
