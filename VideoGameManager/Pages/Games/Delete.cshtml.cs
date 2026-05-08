@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VideoGameManager.Data;
 using VideoGameManager.Models;
 using VideoGameManager.Service;
 
@@ -7,21 +8,21 @@ namespace VideoGameManager.Pages.Games
 {
     public class DeleteModel : PageModel
     {
-        private readonly GameService GameService;
+        private readonly GameStoreContext _context;
         public Game GameDelete { get; set; }
 
-        public DeleteModel(GameService gameService)
+        public DeleteModel(GameStoreContext context)
         {
-            GameService = gameService;
+            _context = context;
         }
 
         public void OnGet(int id)
         {
-            GameDelete = GameService.GetById(id);
+            GameDelete = _context.GetById(id);
         }
         public IActionResult OnPostDelete(int id)
         {
-            GameService.Delete(id);
+            _context.Delete(id);
             return RedirectToPage("/Games/Index");
         }
     }
