@@ -1,0 +1,36 @@
+﻿@page
+@model VideoGameManager.Pages.DevelopersPages.DetailsModel
+@{
+    ViewData["Title"] = "Details Page";
+}
+<div>
+    <h1 class="text-center mb-5">@Model.DeveloperSelect.Name</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-4">
+                <label class="fw-bold fs-4">Country:</label>
+                <p class="fs-3">@Model.DeveloperSelect.Country</p>
+            </div>
+            
+            <div class="mb-4">
+                <label class="fw-bold fs-4">ID :</label>
+                <p class="fs-3 text-primary">@Model.DeveloperSelect.Id</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-4">
+                <label class="fw-bold fs-4">Year:</label>
+                <p class="fs-3">@Model.DeveloperSelect.FoundedYear</p>
+            </div>
+
+            <div class="mb-4">
+                <label class="fw-bold fs-4">Description:</label>
+                <p class="fs-5">@(Model.DeveloperSelect != null && Model.DeveloperSelect.Games.Any() ? string.Join(" , ", Model.DeveloperSelect.Games.Select(x => x.Title)) : "No games")</p>
+            </div>
+        </div>
+    </div>
+    <br></br>
+    <a class="btn btn-info" asp-page="./Index">Return</a>
+
+</div>

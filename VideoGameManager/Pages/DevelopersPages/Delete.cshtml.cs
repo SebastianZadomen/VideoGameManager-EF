@@ -1,29 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using VideoGameManager.Data;
 using VideoGameManager.Models;
-using VideoGameManager.Service;
 
-namespace VideoGameManager.Pages.Games
+namespace VideoGameManager.Pages.DevelopersPages
 {
     public class DeleteModel : PageModel
     {
         private readonly GameStoreContext _context;
-        public Game GameDelete { get; set; }
-
+        public Developer DeveloperDelete { get; set; }
         public DeleteModel(GameStoreContext context)
         {
             _context = context;
         }
-
         public void OnGet(int id)
         {
-            GameDelete = _context.GetByIdGame(id);
+            DeveloperDelete = _context.GetByIdDeveloper(id);
         }
         public IActionResult OnPostDelete(int id)
         {
-            _context.DeleteGame(id);
-            return RedirectToPage("/Games/Index");
+            _context.DeleteDeveloper(id);
+            return RedirectToPage("/DevelopersPages/Index");
         }
+
     }
 }
