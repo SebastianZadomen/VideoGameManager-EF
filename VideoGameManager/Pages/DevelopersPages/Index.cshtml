@@ -16,7 +16,6 @@
                 <th>Associated Game</th>
                 <th></th>
                 <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +28,6 @@
                     <td>@dev.FoundedYear</td>
                     <td>@(dev.Games != null && dev.Games.Any()? string.Join(", ", dev.Games.Select(x => x.Title)): "No games")</td>                   
                     <td><a class="btn btn-info" asp-page="./Details" asp-route-id="@dev.Id">Detalles</a></td>
-                    <td><a class="btn btn-light" asp-page="./Edit" asp-route-id="@dev.Id">Edit</a></td>
                     <td><a class="btn btn-danger" asp-page="./Delete" asp-route-id="@dev.Id">Eliminar</a></td>
                 </tr>
             }

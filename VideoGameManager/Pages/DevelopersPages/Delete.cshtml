@@ -1,0 +1,72 @@
+﻿@page
+@model VideoGameManager.Pages.DevelopersPages.DeleteModel
+@{
+    ViewData["Title"] = "Delete Page";
+
+}
+<div>
+    <h1 class="text-center mb-5">@Model.DeveloperDelete.Name</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-4">
+                <label class="fw-bold fs-4">Country:</label>
+                <p class="fs-3">@Model.DeveloperDelete.Country</p>
+            </div>
+            
+            <div class="mb-4">
+                <label class="fw-bold fs-4">ID :</label>
+                <p class="fs-3 text-primary">@Model.DeveloperDelete.Id</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-4">
+                <label class="fw-bold fs-4">Year:</label>
+                <p class="fs-3">@Model.DeveloperDelete.FoundedYear</p>
+            </div>
+
+            <div class="mb-4">
+                <label class="fw-bold fs-4">Description:</label>
+                <p class="fs-5">@(Model.DeveloperDelete != null && Model.DeveloperDelete.Games.Any() ? string.Join(" , ", Model.DeveloperDelete.Games.Select(x => x.Title)) : "No games")</p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ShowAlert">
+            Delete
+        </button>
+        @if (Model.DeveloperDelete.Games.Any()){ 
+            <div class="modal" id="ShowAlert" aria-labelledby="ShowAlert" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Alert</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>I can't delete the game, this developer has linked games.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }else
+        {
+            <div class="modal" id="ShowAlert" aria-labelledby="ShowAlert" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Alert</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete the developer?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.DeveloperDelete.Id">
+                                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
