@@ -22,7 +22,7 @@ namespace VideoGameManager.Pages.Games
 
         public void OnGet(int id)
         {
-            GameEdit = _context.GetById(id);
+            GameEdit = _context.GetByIdGame(id);
 
         }
         public IActionResult OnPost()
@@ -32,7 +32,7 @@ namespace VideoGameManager.Pages.Games
                 return Page();
             }
 
-            _context.Update(GameEdit);
+            _context.UpdateGame(GameEdit);
             return RedirectToPage("/Games/Index");
         }
     }

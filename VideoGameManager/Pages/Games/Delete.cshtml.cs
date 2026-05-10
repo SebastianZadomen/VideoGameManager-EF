@@ -18,11 +18,11 @@ namespace VideoGameManager.Pages.Games
 
         public void OnGet(int id)
         {
-            GameDelete = _context.GetById(id);
+            GameDelete = _context.GetByIdGame(id);
         }
         public IActionResult OnPostDelete(int id)
         {
-            _context.Delete(id);
+            _context.DeleteGame(id);
             return RedirectToPage("/Games/Index");
         }
     }

@@ -28,7 +28,7 @@ namespace VideoGameManager.Pages.Games
                 return Page();
             }
             
-            _context.Add(GameCreated);
+            _context.AddGame(GameCreated);
             return RedirectToPage("/Games/Index");
         }
     }

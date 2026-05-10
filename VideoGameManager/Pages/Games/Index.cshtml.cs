@@ -20,7 +20,7 @@ namespace VideoGameManager.Pages.Games
         public async Task OnGetAsync()
         {
 
-            Games = _context.GetAll();
+            Games = _context.GetAllGames();
             if (!_context.Developers.Any())
             {
                 var dev1 = new Developer { Name = "Nintendo", Country = "Japan", FoundedYear = 1889 };
