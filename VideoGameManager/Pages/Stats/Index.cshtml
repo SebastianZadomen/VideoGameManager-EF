@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Estadístiques de Jocs";
+}
+
+<h1>Stats of the Game</h1>
+
+<hr />
+
+<section class="mb-5">
+    <h3>Filter by gender</h3>
+
+    <form method="get">
+        <select asp-for="SelectedGenre" class="form-select" onchange="this.form.submit()">
+            <option value="">Select a genre-</option>
+            @foreach (var genre in Model.Genres)
+            {
+                <option value="@genre">@genre</option>
+            }
+        </select>
+    </form>
+
+    <table class="table mt-3">
+        <tbody>
+            @foreach (var game in Model.RpgGames)
+            {
+                <tr>
+                    <td>@game.Title</td>
+                    <td>@game.Genre</td>
+                    <td>@game.Score</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+<section class="mb-5">
+    <h3>The 5 highest rated</h3>
+    <ul class="list-group">
+        @foreach (var game in Model.Top5Games) {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>@game.Title</strong> (@game.Developer?.Name)
+                <span class="badge bg-success rounded-pill">@game.Score</span>
+            </li>
+        }
+    </ul>
+</section>
+
+<section class="mb-5">
+    <h3>Games per decade</h3>
+    <table class="table table-sm w-50">
+        <thead>
+            <tr><th>Decade</th><th>Amount</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var stat in Model.ByDecade)
+            {
+                <tr>
+                    <td>@stat.Decade's</td>
+                    <td>@stat.Count jocs</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
