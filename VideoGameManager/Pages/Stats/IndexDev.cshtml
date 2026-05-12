@@ -1,0 +1,105 @@
+﻿@page
+@model VideoGameManager.Pages.Stats.IndexDevModel
+@{
+    ViewData["Title"] = "Advanced Statistics";
+}
+
+<div class= "mb-5">
+    <h1 class="mb-4">Advanced Game Statistics</h1>
+
+    <section class="mb-5">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Search Games</h3>
+            <form method="get" class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <label class="form-label">Title</label>
+                    <input asp-for="TitleFilter" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Genre</label>
+                    <input asp-for="GenreFilter" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Min Year</label>
+                    <input asp-for="MinYear" type="number" class="form-control">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </form>
+
+            <table class="table table-striped table-hover border">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Year</th>
+                        <th>Developer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var game in Model.Results)
+                    {
+                        <tr>
+                            <td>@game.Title</td>
+                            <td>@game.Genre</td>
+                            <td>@game.Year</td>
+                            <td>@game.Developer?.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class=" mb-5">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Average Score by Developer</h3>
+            <table class="table table-bordered">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Developer</th>
+                        <th>Games Count</th>
+                        <th>Average Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dev in Model.AvgByDev)
+                    {
+                        <tr>
+                            <td>@dev.Name</td>
+                            <td>@dev.GameCount</td>
+                            <td>@dev.AvgScore.ToString("F2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="mb-5">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Productive Developers</h3>
+            <form method="get" class="row g-3 align-items-center mb-4">
+                <div class="col-auto">
+                    <label>Threshold of games:</label>
+                </div>
+                <div class="col-auto">
+                    <input asp-for="Threshold" type="number" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-dark">Filter</button>
+                </div>
+            </form>
+
+            <ul class="list-group">
+                @foreach (var dev in Model.ProductiveDevs)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @dev.Name
+                        <span class="badge bg-primary rounded-pill">@dev.Games.Count games</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+</div>

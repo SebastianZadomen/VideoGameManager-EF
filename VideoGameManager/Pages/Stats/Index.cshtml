@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Estadístiques de Jocs";
+    ViewData["Title"] = "Stats Game";
 }
 
 <h1>Stats of the Game</h1>
@@ -57,10 +57,12 @@
             @foreach (var stat in Model.ByDecade)
             {
                 <tr>
-                    <td>@stat.Decade's</td>
-                    <td>@stat.Count jocs</td>
+                    <td>@stat.Decade</td>
+                    <td>@stat.Count</td>
                 </tr>
             }
         </tbody>
     </table>
+    <a class="btn btn-info" asp-page="./IndexDev">Stats Advanced</a>
+
 </section>
